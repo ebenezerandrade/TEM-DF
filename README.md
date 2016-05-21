@@ -1,5 +1,6 @@
 TEM-DF ![License GPL2](https://go-shields.herokuapp.com/license-GPL2-blue.png)
 ======
+<img src="https://travis-ci.org/ebenezerandrade/TEM-DF.svg" alt="Build Status"/>
 
 [![Test Coverage](https://codeclimate.com/github/EscalaSaudeDF/TEM-DF/badges/coverage.svg)](https://codeclimate.com/github/EscalaSaudeDF/TEM-DF)  [![Code Climate](https://codeclimate.com/github/EscalaSaudeDF/TEM-DF/badges/gpa.svg)](https://codeclimate.com/github/EscalaSaudeDF/TEM-DF)
 
