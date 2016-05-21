@@ -1,0 +1,17 @@
+language: ruby
+
+script: 
+  - rake test
+
+rvm:
+- 1.27.0
+
+notifications:
+  email:
+    recipients:
+    - ebenezer.andrade1@gmail.com
+
+branches:
+  only:
+  - master
+  - development
