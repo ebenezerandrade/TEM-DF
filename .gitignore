@@ -18,4 +18,3 @@
 *.lock
 /coverage/*
 .~*
-Gemfile.lock
