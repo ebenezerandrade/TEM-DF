@@ -1,23 +1,25 @@
 language: ruby
-
 before_script:
 - cp config/database.yml.travis config/database.yml
 - mysql -e "create database IF NOT EXISTS TEMDF_test;" -uroot
 - export MAILGUN_API_KEY="secret"
-- rake db:migrate RAILS_ENV=test
-
-script: 
-  - rake test
-
+- bundle exec rake db:migrate RAILS_ENV=test
+script:
+- bundle exec rake test
 rvm:
 - 2.2.0
-
 notifications:
   email:
     recipients:
     - ebenezer.andrade1@gmail.com
-
 branches:
   only:
   - master
   - development
+env:
+  global:
+    secure: eVU2WwgDJdtpnF6D44mMD/GXJbFgmscUgn2EEm+RWtmuqsKgBsOuumkwcMwfCXVDF8s98WcT2FOErOM5RCpQBtdRmP0nivzGX3IqT3W4Dnenc2a8bUChOYpTnMk7yocDvhyMGgDDUinA9H3b4yHIxjlNb6jLdIc9pAiJOjmmuEhCnzE8hUsKS+udq4thA5KFVxNmQFG7nMluxWkH/jIqL5ttgTsFOo3bHzzoEiS0d+Yog3lhEoIMaaREA1fmaf7Jwcjl8Bxrx2BWf9WQUt0nlqOyReDhUmlwvFJ5MHSO/xKsW3snqZ55Vu8XP+QCgxZpsgvCFa/0s4e+1G65upkkUaQr3XLNqSufaDZCJaW602ci+z/w/2o5MKUttJGNdQQhLQ6AXB0fNooGB4gHecLKfKM6HYPT/EbBmXGd0uflVvydtxUJF0SOhKSxvpwTjqToitpHcJQP7cHczvGsZK5HpqODK83K0hjlbzLUPi83nemNvRGkdUsfWi+XyFy7bqYqR0/76ipx9oW54BrTkDAT44ChvQEKsMo0wVLHBxNly6HpZG0KKJ/Mfnwwr4yM4ElsvP/2c7ACcKH8hdQSlO+1vfwfaAcU/yAPe/2ePEd+tCMEguFs7XvgzwE3pZXwFYbHDIcxH9rSGPymZ4XdeLtNxKLdbhjMkxTEICuycW1ud6M=
+
+after_success:
+  - "openssl aes-256-cbc -k $DEPLOY_KEY -in config/deploy/deploy_id_rsa_enc_travis -d -a -out config/deploy/deploy_id_rsa"
+  - "bundle exec cap production deploy"
